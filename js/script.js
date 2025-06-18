@@ -1,5 +1,3 @@
-// === script.js ===
-
 // Typewriter Effect
 const typewriterText = "Aspiring Full Stack Developer\nPassionate Problem Solver";
 const typewriterElement = document.getElementById("typewriter");
@@ -63,27 +61,9 @@ cards.forEach((card, index) => {
   cardObserver.observe(card);
 });
 
-// Reveal Project 1 details after video ends
-function revealProjectDetails() {
-  const details = document.getElementById("projectDetails");
-  if (details) {
-    details.classList.remove("hidden");
-    details.classList.add("show");
-  }
-}
-
-// Reveal Project 2 details after video ends
-function revealProjectDetails2() {
-  const details = document.getElementById("projectDetails2");
-  if (details) {
-    details.classList.remove("hidden");
-    details.classList.add("show");
-  }
-}
-
-// Reveal Project 3 details after video ends
-function revealProjectDetails3() {
-  const details = document.getElementById("projectDetails3");
+// Reveal Project Details after Videos End
+function revealProjectDetails(id) {
+  const details = document.getElementById(id);
   if (details) {
     details.classList.remove("hidden");
     details.classList.add("show");
@@ -91,51 +71,85 @@ function revealProjectDetails3() {
 }
 
 function setupIntersectionObservers() {
-  const mockup1 = document.getElementById("mockup1");
-  const video1 = document.getElementById("videoProject1");
-  const mockup2 = document.getElementById("mockup2");
-  const video2 = document.getElementById("videoProject2");
-  const mockup3 = document.getElementById("mockup3");
-  const video3 = document.getElementById("videoProject3");
+  const observers = [
+    { mockup: "mockup1", video: "videoProject1", details: "projectDetails" },
+    { mockup: "mockup2", video: "videoProject2", details: "projectDetails2" },
+    { mockup: "mockup3", video: "videoProject3", details: "projectDetails3" },
+  ];
 
-  if (mockup1 && video1) {
-    const observer1 = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          mockup1.classList.add("show");
-          setTimeout(() => video1.play().catch(() => {}), 300);
-        }
-      });
-    }, { threshold: 0.4 });
-    observer1.observe(mockup1);
-    video1.addEventListener("ended", revealProjectDetails);
-  }
+  observers.forEach(({ mockup, video, details }) => {
+    const mockupEl = document.getElementById(mockup);
+    const videoEl = document.getElementById(video);
 
-  if (mockup2 && video2) {
-    const observer2 = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          mockup2.classList.add("show");
-          setTimeout(() => video2.play().catch(() => {}), 300);
-        }
-      });
-    }, { threshold: 0.4 });
-    observer2.observe(mockup2);
-    video2.addEventListener("ended", revealProjectDetails2);
-  }
+    if (mockupEl && videoEl) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            mockupEl.classList.add("show");
+            setTimeout(() => videoEl.play().catch(() => {}), 300);
+          }
+        });
+      }, { threshold: 0.4 });
 
-  if (mockup3 && video3) {
-    const observer3 = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          mockup3.classList.add("show");
-          setTimeout(() => video3.play().catch(() => {}), 300);
-        }
-      });
-    }, { threshold: 0.4 });
-    observer3.observe(mockup3);
-    video3.addEventListener("ended", revealProjectDetails3);
-  }
+      observer.observe(mockupEl);
+      videoEl.addEventListener("ended", () => revealProjectDetails(details));
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", setupIntersectionObservers);
+
+// Navbar Slide-In Animation
+window.addEventListener("DOMContentLoaded", () => {
+  const navItems = document.querySelectorAll("nav ul li");
+  navItems.forEach((item, index) => {
+    item.style.opacity = 0;
+    item.style.transform = "translateY(-10px)";
+    setTimeout(() => {
+      item.style.transition = "all 0.6s ease";
+      item.style.opacity = 1;
+      item.style.transform = "translateY(0)";
+    }, index * 150);
+  });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  const navItems = document.querySelectorAll("nav ul li");
+
+  navItems.forEach((item, index) => {
+    item.style.animation = "none";
+    item.offsetHeight; // Trigger reflow
+    item.style.animation = `slideInNav 0.6s ease forwards`;
+    item.style.animationDelay = `${(index + 1) * 0.1}s`;
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const splineWrapper = document.getElementById("splineWrapper");
+
+  const contactObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        splineWrapper.classList.add("show");
+      }
+    });
+  }, { threshold: 0.4 });
+
+  if (splineWrapper) contactObserver.observe(splineWrapper);
+});
+
+// Contact scroll animation for text & 3D
+document.addEventListener("DOMContentLoaded", () => {
+  const animatedElements = document.querySelectorAll(".slide-left, .slide-right, .contact-3d-center");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  animatedElements.forEach((el) => observer.observe(el));
+});

@@ -7,6 +7,8 @@
   <title>Syed Junaid | Portfolio</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.11/build/spline-viewer.js"></script>
+
 
 </head>
 
@@ -20,6 +22,7 @@
       <li><a href="#contact">CONTACT</a></li>
     </ul>
   </nav>
+
 
   <!-- Home Section -->
   <div class="container" id="home">
@@ -148,39 +151,82 @@
     </div>
 
     <!-- === Transition Spacer (Optional) === -->
-<div class="transition-spacer1"></div>
+    <div class="transition-spacer1"></div>
 
-<!-- === Project 3: Air Canvas === -->
-<div class="project-full-container">
-  <!-- Left: Video Mockup -->
-  <div id="mockup3" class="mockup-side">
-    <video
-      id="videoProject3"
-      src="assets/mockup/mockup-2.mp4"
-      class="project-mockup"
-      muted
-      playsinline
-    ></video>
-  </div>
+    <!-- === Project 3: Air Canvas === -->
+    <div class="project-full-container">
+      <!-- Left: Video Mockup -->
+      <div id="mockup3" class="mockup-side">
+        <video id="videoProject3" src="assets/mockup/mockup-2.mp4" class="project-mockup" muted playsinline></video>
+      </div>
 
-  <!-- Right: Project Details -->
-  <div id="projectDetails3" class="details-side">
-    <h3>Air Canvas using Hand Tracking</h3>
-    <p>
-      Draw in the air using hand gestures detected via webcam in real-time using OpenCV and Mediapipe.
-    </p>
-    <p><strong>Mini Project Presentation</strong></p>
-    <p><strong>Tech Stack:</strong> Python, OpenCV, Mediapipe</p>
-    <a href="https://github.com/your-username/air-canvas" target="_blank" class="github-link">
-      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" class="github-icon" />
-      View on GitHub
-    </a>
+      <!-- Right: Project Details -->
+      <div id="projectDetails3" class="details-side">
+        <h3>Air Canvas using Hand Tracking</h3>
+        <p>
+          Draw in the air using hand gestures detected via webcam in real-time using OpenCV and Mediapipe.
+        </p>
+        <p><strong>Mini Project Presentation</strong></p>
+        <p><strong>Tech Stack:</strong> Python, OpenCV, Mediapipe</p>
+        <a href="https://github.com/your-username/air-canvas" target="_blank" class="github-link">
+          <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"
+            class="github-icon" />
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider" />
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <h2 class="contact-heading">Get in Touch</h2>
+
+  <div class="contact-container">
+    <!-- Left Text -->
+    <div class="contact-text slide-left hidden">
+      <h3>Let's Build Together</h3>
+      <p>I’m open to full-stack internships, collaborations, or just a tech talk. Let’s connect!</p>
+      <p>Drop me a message, and I’ll get back to you shortly.</p>
+    </div>
+
+    <!-- Center 3D Model -->
+    <div class="contact-3d-center hidden">
+      <spline-viewer url="https://prod.spline.design/fExktkI3RdRIjTd9/scene.splinecode"></spline-viewer>
+    </div>
+
+    <!-- Right Contact Form -->
+    <div class="contact-text slide-right hidden">
+      <form action="#" method="POST">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="send-btn">Send Message</button>
+      </form>
+    </div>
   </div>
-</div>
-<hr class="section-divider" />
 </section>
 
 
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Syed Junaid. All rights reserved.</p>
+    <div class="footer-icons">
+      <a href="https://github.com/Syedjunaid30" target="_blank" aria-label="GitHub">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+      </a>
+      <a href="https://www.linkedin.com/in/syedjunaid21/" target="_blank" aria-label="LinkedIn">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" />
+      </a>
+    </div>
+  </div>
+</footer>
 
 
   <script src="js/script.js"></script>
